@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,9 +24,6 @@ public class Floor {
     public Floor(Floor floor) {
     }
 
-        @OneToMany(mappedBy = "floor", fetch = FetchType.EAGER,
-           cascade = CascadeType.ALL)
-        List<Date> dateList;
     public Floor(){
 
     }
