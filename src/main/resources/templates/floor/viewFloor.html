@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>TO DO</title>
+</head>
+<body>
+
+<h2>Task List</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Date</th>
+    <th>RoomNumber</th>
+    <th>CameraType</th>
+    <th>RoomStatus</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:if="${floor.empty}">
+    <td colspan="2">No floor Registered</td>
+  </tr>
+  <tr th:each="floor:${floor}">
+    <td><span th:text="${floor.id}">ID</span></td>
+    <td><span th:text="${floor.roomNumber}">RoomNumber</span></td>
+    <td><span th:text="${floor.cameraType}">CameraType</span></td>
+    <td><span th:text="${floor.roomStatus}">RoomStatus</span></td>
+  </tr>
+  </tbody>
+</table>
+
+<button onclick="window.location.href='/';">
+  Go HomePage
+</button>
