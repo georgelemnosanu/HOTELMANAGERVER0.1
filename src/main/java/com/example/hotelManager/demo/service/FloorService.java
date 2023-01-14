@@ -1,5 +1,6 @@
 package com.example.hotelManager.demo.service;
 
+import com.example.hotelManager.demo.model.CameraType;
 import com.example.hotelManager.demo.model.Floor;
 import com.example.hotelManager.demo.repository.CameraTypeRepository;
 import com.example.hotelManager.demo.repository.FloorRepository;
@@ -24,6 +25,11 @@ public class FloorService {
         return floorRepository.findAll()
                 .stream().toList();
     }
+
+    public List<CameraType> allCamera(){
+        return cameraTypeRepository.findAll().stream().toList();
+    }
+
 
 
 }

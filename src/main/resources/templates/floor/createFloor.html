@@ -12,30 +12,42 @@
 <p></p>
 
 <form th:object="${createFloor}" th:action="@{/mvc/floor/submit}" method="post">
-<!--  <div class="mb-3 w-25 p-3">-->
-<!--    <label class="form-label" for="date">Date</label>-->
-<!--    <input class="form-control" type="text" id="date" th:field="*{date}"/>-->
-<!--  </div>-->
+
   </div>
   <div class="mb-3 w-25 p-3">
     <label class="form-label" for="roomNumber">Room Number</label>
     <input class="form-control" type="number" id="roomNumber" th:field="*{roomNumber}"/>
   </div>
 
-  <div class="mb-3 w-25 p-3">
-    <label class="form-label" for="cameraType">Camera Type:</label>
-    <input class="form-control" type="number" id="cameraType" th:field="*{cameraType}"/>
-  </div>
-  <div class="mb-3 w-25 p-3">
-    <label class="form-label" for="roomStatus">Room Status:</label>
-    <input class="form-control" type="number" id="roomStatus" th:field="*{roomStatus}"/>
-  </div>
+
+<!--  <select th:field="*{roomvalues.id}">-->
+<!--    <option th:each="roomValues : ${roomValues}"-->
+<!--            th:value="${roomvalues.id}"-->
+<!--            th:text="${roomvalues.status}">-->
+<!--      Address-->
+<!--    </option>-->
+<!--  </select>-->
+
+  <select  id="roomvalues" name="roomvalues">
+    <option value="" disabled selected>Select an option</option>
+    <option th:each="roomvalues : ${roomvalues}"
+            th:value="${roomvalues.id}"
+            th:text="${roomvalues.status}"></option>
+  </select>
+   </br>
+
+    <label for="values">Select a value:</label>
+    <select id="values" name="values">
+      <option value="" disabled selected>Select an option</option>
+      <option th:each="value : ${values}" th:value="${value.id}" th:text="${value.cameraType}"></option>
+    </select>
 
   <div class="w-25 p-3 text-end">
     <input type="submit" value="Submit" class="btn btn-primary " />
     <br>
   </div>
 </form>
+
 
 <p></p>
 
