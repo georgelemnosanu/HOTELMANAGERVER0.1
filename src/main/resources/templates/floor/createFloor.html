@@ -27,18 +27,39 @@
 <!--      Address-->
 <!--    </option>-->
 <!--  </select>-->
+<!--  <div class="col-md-6">-->
+<!--    <div class="form-group">-->
+<!--      <select th:field="*{cameraType}" class="form-control"-->
+<!--              id="roomvalues">-->
+<!--        <option th:each="roomvalues : ${roomvalues}"-->
+<!--                th:value=${roomvalues.id}-->
+<!--                th:text="${roomvalues.status}"></option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </div>-->
+
   <div class="col-md-6">
     <div class="form-group">
-      <select th:field="*{cameraTypeId}" class="form-control"
-              id="roomvalues">
-        <option th:each="roomvalues : ${roomvalues}"
-                th:value=${roomvalues.id}
-                th:text="${roomvalues.status}"></option>
+      <select th:field="*{cameraType}" class="form-control"
+              id="roomType">
+        <option th:each="roomType: ${roomType}"
+                th:value=${roomType.id}
+                th:text="${roomType.cameraType}"></option>
       </select>
     </div>
   </div>
 
 
+  <div class="col-md-6">
+    <div class="form-group">
+      <select th:field="*{roomStatus}" class="form-control"
+              id="roomStatus">
+        <option th:each="roomStatus : ${roomStatus}"
+                th:value=${roomStatus.id}
+                th:text="${roomStatus.status}"></option>
+      </select>
+    </div>
+  </div>
 
 
 <!--  <select  id="roomvalues" name="roomvalues">-->
@@ -49,16 +70,6 @@
 <!--  </select>-->
 <!--   </br>-->
 
-  <div class="col-md-6">
-    <div class="form-group">
-      <select th:field="*{roomStatusId}" class="form-control"
-              id="values">
-        <option th:each="value : ${values}"
-                th:value=${value.id}
-                th:text="${value.cameraType}"></option>
-      </select>
-    </div>
-  </div>
 
 <!--    <label for="values">Select a value:</label>-->
 <!--    <select id="values" name="values">-->

@@ -4,7 +4,6 @@ package com.example.hotelManager.demo.controller;
 import com.example.hotelManager.demo.model.CameraType;
 import com.example.hotelManager.demo.model.Floor;
 import com.example.hotelManager.demo.model.RoomStatus;
-import com.example.hotelManager.demo.model.dto.FloorDto;
 import com.example.hotelManager.demo.repository.CameraTypeRepository;
 import com.example.hotelManager.demo.repository.RoomStatusRepository;
 import com.example.hotelManager.demo.service.FloorService;
@@ -16,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -53,8 +51,8 @@ public final RoomStatusRepository roomStatusRepository;
         List<CameraType> cameraTypes = cameraTypeRepository.findAll();
         List<RoomStatus> roomStatuses= roomStatusRepository.findAll();
         model.addAttribute("createFloor",floor);
-        model.addAttribute("values", cameraTypes);
-        model.addAttribute("roomvalues",roomStatuses);
+        model.addAttribute("roomType", cameraTypes);
+        model.addAttribute("roomStatus",roomStatuses);
         return "floor/createFloor";
     }
 

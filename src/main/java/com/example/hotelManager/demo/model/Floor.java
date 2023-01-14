@@ -1,13 +1,8 @@
 package com.example.hotelManager.demo.model;
 
 
-import com.example.hotelManager.demo.model.dto.FloorDto;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="floor")
@@ -46,11 +41,11 @@ public class Floor {
 
 
 
- public Floor(FloorDto floorDto){
-        this.id= floorDto.getId();
-//        this.cameraTypeId=floorDto.getCameraTypeId();
-//        this.roomStatusId=floorDto.getRoomStatusId();
- }
+// public Floor(FloorDto floorDto){
+//        this.id= floorDto.getId();
+////        this.cameraTypeId=floorDto.getCameraTypeId();
+////        this.roomStatusId=floorDto.getRoomStatusId();
+// }
 
 
 
@@ -74,10 +69,8 @@ public class Floor {
     private CameraType cameraType;
 
    @ManyToOne
-   @JoinColumn(name = "roomstatus_id" ,  referencedColumnName = "id")
+   @JoinColumn(name = "roomstatus_id")
    private RoomStatus roomStatus;
 
 
-    public void setCameraType(Integer id) {
-    }
 }
