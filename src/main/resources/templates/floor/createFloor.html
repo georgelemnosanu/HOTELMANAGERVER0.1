@@ -27,20 +27,47 @@
 <!--      Address-->
 <!--    </option>-->
 <!--  </select>-->
+  <div class="col-md-6">
+    <div class="form-group">
+      <select th:field="*{cameraTypeId}" class="form-control"
+              id="roomvalues">
+        <option th:each="roomvalues : ${roomvalues}"
+                th:value=${roomvalues.id}
+                th:text="${roomvalues.status}"></option>
+      </select>
+    </div>
+  </div>
 
-  <select  id="roomvalues" name="roomvalues">
-    <option value="" disabled selected>Select an option</option>
-    <option th:each="roomvalues : ${roomvalues}"
-            th:value="${roomvalues.id}"
-            th:text="${roomvalues.status}"></option>
-  </select>
-   </br>
 
-    <label for="values">Select a value:</label>
-    <select id="values" name="values">
-      <option value="" disabled selected>Select an option</option>
-      <option th:each="value : ${values}" th:value="${value.id}" th:text="${value.cameraType}"></option>
-    </select>
+
+
+<!--  <select  id="roomvalues" name="roomvalues">-->
+<!--    <option value="" disabled selected>Select an option</option>-->
+<!--    <option th:each="roomvalues : ${roomvalues}"-->
+<!--            th:value="${roomvalues.id}"-->
+<!--            th:text="${roomvalues.status}"></option>-->
+<!--  </select>-->
+<!--   </br>-->
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <select th:field="*{roomStatusId}" class="form-control"
+              id="values">
+        <option th:each="value : ${values}"
+                th:value=${value.id}
+                th:text="${value.cameraType}"></option>
+      </select>
+    </div>
+  </div>
+
+<!--    <label for="values">Select a value:</label>-->
+<!--    <select id="values" name="values">-->
+<!--      <option value="" disabled selected>Select an option</option>-->
+<!--      <option th:each="value : ${values}"-->
+<!--              th:value="${value.id}"-->
+<!--              th:selected="${value.isSelected(lastselected)}"-->
+<!--              th:text="${value.cameraType}"></option>-->
+<!--    </select>-->
 
   <div class="w-25 p-3 text-end">
     <input type="submit" value="Submit" class="btn btn-primary " />
