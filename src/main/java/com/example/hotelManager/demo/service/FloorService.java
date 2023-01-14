@@ -22,7 +22,6 @@ public class FloorService {
 
     private final CameraTypeRepository cameraTypeRepository;
     public void createFloor(Floor floor){
-       Floor floor1= new Floor();
         //.getCameraType().cameraTypeRepository.findById(floor.getCameraTypeId()).orElseThrow(()->new RuntimeException()).getId();
         //Integer id = cameraTypeRepository.findById(floor.getCameraTypeId()).orElseThrow(() -> new RuntimeException()).getId();
         //floor1.setCameraType(id);
@@ -30,7 +29,7 @@ public class FloorService {
         //floor1.setCameraType(cameraTypeRepository.findById(floor.getCameraTypeId()).orElseThrow(()->new RuntimeException()).setId());
         //floor1.setCameraType(cameraTypeRepository.findById(floor.getCameraTypeId()).orElseThrow(()->new RuntimeException()).getId());
        //floor1.setRoomStatusId(roomStatusRepository.findById(floor.getRoomStatusId()).orElseThrow(()->new RuntimeException()).getId());
-       floorRepository.save(floor1);
+       floorRepository.save(floor);
     }
     public List<Floor> findAll() {
         List<Floor> floorList = floorRepository.findAll()

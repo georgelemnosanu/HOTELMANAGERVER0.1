@@ -14,7 +14,6 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
 public class Floor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,22 +31,25 @@ public class Floor {
         this.roomNumber = roomNumber;
         this.cameraType = cameraType;
         this.roomStatus = roomStatus;
-        this.cameraTypeId=cameraTypeId;
-        this.roomStatusId=roomStatusId;
+//        this.cameraTypeId=cameraTypeId;
+//        this.roomStatusId=roomStatusId;
     }
 
-    public Floor(Integer id, int roomNumber,Integer cameraTypeId,Integer roomStatusId) {
-       CameraType cameraType1= new CameraType();
-        this.id = id;
-        this.roomNumber = roomNumber;
-        this.cameraTypeId=cameraTypeId;
-        this.roomStatusId=roomStatusId;
-    }
+//    public Floor(Integer id, int roomNumber,Integer cameraTypeId,Integer roomStatusId) {
+//       CameraType cameraType1= new CameraType();
+//        this.id = id;
+//        this.roomNumber = roomNumber;
+////        this.cameraTypeId=cameraTypeId;
+////        this.roomStatusId=roomStatusId;
+//    }
+
+
+
 
  public Floor(FloorDto floorDto){
         this.id= floorDto.getId();
-        this.cameraTypeId=floorDto.getCameraTypeId();
-        this.roomStatusId=floorDto.getRoomStatusId();
+//        this.cameraTypeId=floorDto.getCameraTypeId();
+//        this.roomStatusId=floorDto.getRoomStatusId();
  }
 
 
@@ -62,8 +64,8 @@ public class Floor {
     }
 
     private int roomNumber;
-    Integer cameraTypeId;
-    Integer roomStatusId;
+//    Integer cameraTypeId;
+//    Integer roomStatusId;
 
 
 
