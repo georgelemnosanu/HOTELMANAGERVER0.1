@@ -54,8 +54,8 @@ public class Floor {
         this.id = id;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId(Integer id) {
+        return this.id;
     }
 
     private int roomNumber;

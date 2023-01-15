@@ -39,6 +39,17 @@ public class FloorService {
         return cameraTypes;
     }
 
+    public void updateFloor(Integer id,Floor floor){
+        floorRepository.findById(floor.getId(id)).ifPresent(
+                floor1 -> {
+                    floor1.setRoomNumber(floor.getRoomNumber());
+                    floor1.setCameraType(floor.getCameraType());
+                    floor1.setRoomStatus(floor.getRoomStatus());
+                    floorRepository.save(floor1);
+                });
+    }
+
+
 
 
 

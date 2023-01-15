@@ -7,17 +7,18 @@
 <body>
 
 <h2>Task List</h2>
-
+<form th:action="@{/mvc/floor/viewFloors}" th:method="get" th:object="${createFloor}">
 <table>
   <thead>
   <tr>
     <th>Id</th>
-    <th>Date</th>
     <th>RoomNumber</th>
     <th>CameraType</th>
     <th>RoomStatus</th>
+    <th>Edit</th>
   </tr>
   </thead>
+
   <tbody>
   <tr th:if="${floor.empty}">
     <td colspan="2">No floor Registered</td>
@@ -27,19 +28,57 @@
     <td><span th:text="${floor.roomNumber}">RoomNumber</span></td>
     <td><span th:text="${floor.cameraType}">CameraType</span></td>
     <td><span th:text="${floor.roomStatus}">RoomStatus</span></td>
+    <td><a th:href="@{'/mvc/floor/edit/' + ${floor.id}}">edit</a></td>
+      Edit
+    </button></td>
   </tr>
   </tbody>
 </table>
+  <div class="w-25 p-3 text-end">
+    <input type="submit" value="Submit" class="btn btn-primary " />
+    <br>
+  </div>
+</form>
 
-<!--<form>-->
-<!--  <label for="values">Select a value:</label>-->
-<!--  <select id="values" name="values">-->
-<!--    <option value="" disabled selected>Select an option</option>-->
-<!--    <option th:each="value : ${values}" th:value="${value.id}" th:text="${value.name}"></option>-->
-<!--  </select>-->
-<!--  <input type="submit" value="Submit">-->
+<!--<form th:action="@{/mvc/floor/{id}/edit}" th:method="post" th:object="${floor}">-->
+
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="mb-3 w-25 p-3">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label class="form-label" for="roomNumber">Room Number</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input class="form-control" type="number" id="roomNumber" th:field="*{roomNumber}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+
+
+<!--  <div class="col-md-6">-->
+<!--    <div class="form-group">-->
+<!--      <select th:field="*{cameraType}" class="form-control"-->
+<!--              id="roomType">-->
+<!--        <option th:each="roomType: ${roomType}"-->
+<!--                th:value=${roomType.id}-->
+<!--                th:text="${roomType.cameraType}"></option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+<!--  <div class="col-md-6">-->
+<!--    <div class="form-group">-->
+<!--      <select th:field="*{roomStatus}" class="form-control"-->
+<!--              id="roomStatus">-->
+<!--        <option th:each="roomStatus : ${roomStatus}"-->
+<!--                th:value=${roomStatus.id}-->
+<!--                th:text="${roomStatus.status}"></option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--  </div>-->
+
 <!--</form>-->
+
 
 <button onclick="window.location.href='/';">
   Go HomePage
+</button>
+
+<button onclick="window.location.href='/mvc/floor/edit';">
+   Edit
 </button>

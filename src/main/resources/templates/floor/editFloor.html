@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Floor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+
+<h2> Edit Floor</h2>
+<p></p>
+
+<form th:object="${editFloor}" th:action="@{'/mvc/floor/update/'+${id}}" method="post">
+
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>RoomNumber</th>
+      <th>CameraType</th>
+      <th>RoomStatus</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      <td><span th:text="${floor.id}">ID</span></td>
+
+      <td>  <div class="mb-3 w-25 p-10">
+        <label class="form-label" for="roomNumber"></label>
+        <input th:field="*{roomNumber}" required type="text" name="roomNumber"
+               id="roomNumber" class="form-control input-sm"
+               placeholder="RoomNumber"
+               minlength="1">
+        <!--        <input class="form-control" type="number" id="roomNumber" th:field="*{roomNumber}"/>-->
+        <span th:text="InitialNumber+${floor.roomNumber}" >Initial Number:</span>
+      </div>
+        <!--      <td><a th:href="@{'/mvc/floor/update' + ${update.id}}">edit</a></td>-->
+      </td>
+      <td>
+        <div class="col-md-9">
+          <div class="form-group">
+            <select th:field="*{cameraType}" class="form-control"
+                    id="roomType">
+              <option th:each="roomType: ${roomType}"
+                      th:value=${roomType.id}
+                      th:text="${roomType.cameraType}"></option>
+            </select>
+
+          </div>
+        </div>
+        <span th:text="InitialType+${floor.cameraType}">CameraType</span></td>
+      <td> <div class="col-md-9">
+        <div class="form-group">
+          <select th:field="*{roomStatus}" class="form-control"
+                  id="roomStatus">
+            <option th:each="roomStatus : ${roomStatus}"
+                    th:value=${roomStatus.id}
+                    th:text="${roomStatus.status}"></option>
+          </select>
+        </div>
+      </div>
+        <span th:text="InitialRoomStatus+${floor.roomStatus}">RoomStatus</span></td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="w-25 p-3 text-end">
+    <input type="submit" value="Edit" class="btn btn-primary " />
+    <br>
+  </div>
+</form>
+
+
+<p></p>
+
+<button onclick="window.location.href='/';">
+  Go back
+</button>
+
+
+</body>
+</html>
