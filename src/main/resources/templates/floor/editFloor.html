@@ -16,7 +16,6 @@
   <table>
     <thead>
     <tr>
-      <th>Id</th>
       <th>RoomNumber</th>
       <th>CameraType</th>
       <th>RoomStatus</th>
@@ -24,21 +23,21 @@
     </thead>
 
     <tbody>
-      <td><span th:text="${floor.id}">ID</span></td>
+<!--    <tr th:each="editFloor:${editFloor}">-->
+<!--      <td><span th:text="${editFloor}">ID</span></td>-->
 
-      <td>  <div class="mb-3 w-25 p-10">
+      <td>  <div class="mb-3 w-3 p-10">
         <label class="form-label" for="roomNumber"></label>
         <input th:field="*{roomNumber}" required type="text" name="roomNumber"
                id="roomNumber" class="form-control input-sm"
                placeholder="RoomNumber"
                minlength="1">
         <!--        <input class="form-control" type="number" id="roomNumber" th:field="*{roomNumber}"/>-->
-        <span th:text="InitialNumber+${floor.roomNumber}" >Initial Number:</span>
       </div>
         <!--      <td><a th:href="@{'/mvc/floor/update' + ${update.id}}">edit</a></td>-->
       </td>
       <td>
-        <div class="col-md-9">
+        <div class="col-md-13">
           <div class="form-group">
             <select th:field="*{cameraType}" class="form-control"
                     id="roomType">
@@ -49,8 +48,7 @@
 
           </div>
         </div>
-        <span th:text="InitialType+${floor.cameraType}">CameraType</span></td>
-      <td> <div class="col-md-9">
+      <td> <div class="col-md-13">
         <div class="form-group">
           <select th:field="*{roomStatus}" class="form-control"
                   id="roomStatus">
@@ -60,8 +58,7 @@
           </select>
         </div>
       </div>
-        <span th:text="InitialRoomStatus+${floor.roomStatus}">RoomStatus</span></td>
-    </tr>
+    </td>
     </tbody>
   </table>
   </div>

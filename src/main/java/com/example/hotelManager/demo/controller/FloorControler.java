@@ -65,7 +65,7 @@ public final RoomStatusRepository roomStatusRepository;
     }
 
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editFloor/{id}")
     public String getAllFloorsToEdit(@PathVariable(name = "id") Integer id,Model model){
         List<CameraType> cameraTypes = cameraTypeRepository.findAll();
         List<RoomStatus> roomStatuses= roomStatusRepository.findAll();
@@ -74,7 +74,7 @@ public final RoomStatusRepository roomStatusRepository;
         model.addAttribute("roomStatus",roomStatuses);
         List<Floor> floorList= floorService.findAll();
         model.addAttribute("floor",floorList);
-        return "floor/edit";
+        return "floor/editFloor";
     }
 
 

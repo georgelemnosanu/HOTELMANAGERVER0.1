@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePageController {
         @GetMapping("/")
         public String homePage(Model model){
-            model.addAttribute("message","Welcome ");
+            model.addAttribute("message","Welcome Hotel Manager v1 ");
             return "index";
         }
 }
