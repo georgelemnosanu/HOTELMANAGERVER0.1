@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasklists by Date</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">My Hotel Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/mvc/floor/viewFloor">View All Task List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-3">Tasklists Date</h1>
+     <form action="/mvc/floor/tasklistsByDate" method="post">
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date" name="date" th:value="${chosenDate}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">View Tasklists</button>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th>User</th>
+                <th>Date</th>
+                <th>Room Numbers</th>
+                <th>Camera Type</th>
+                <th>Room Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="taskList : ${tasklists}">
+                <td th:text="${taskList.title}"></td>
+                <td th:text="${taskList.date}"></td>
+                <td>
+                    <div th:each="roomNumber : ${taskList.roomNumbers}">
+                        <span th:text="${roomNumber.number}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="roomNumber : ${taskList.roomNumbers}">
+                        <span th:text="${roomNumber.cameraType.name}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="roomNumber : ${taskList.roomNumbers}">
+                        <span th:text="${roomNumber.roomType.name}"></span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

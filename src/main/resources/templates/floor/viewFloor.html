@@ -58,18 +58,28 @@
 </nav>
 <div class="container">
   <h1 class="text-center">View Task List</h1>
+  <form action="/mvc/floor/tasklistsByDate" method="post">
+    <div class="form-group">
+      <label for="date">Select Date</label>
+      <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <button type="submit" class="btn btn-primary">View Tasklists by Date</button>
+  </form>
   <table class="table table-bordered">
     <thead>
     <tr>
       <th>Id</th>
       <th>User Name</th>
+      <th>Date</th>
       <th>Room Numbers</th>
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="taskList : ${taskLists}">
       <td style="text-align: center" th:text="${taskList.id}"></td>
       <td style="text-align: center" th:text="${taskList.title}"></td>
+      <td style="text-align: center" th:text="${taskList.date}"></td>
       <td>
         <table>
           <tr th:each="roomNumber : ${taskList.roomNumbers}">

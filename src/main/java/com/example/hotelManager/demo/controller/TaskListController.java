@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,15 @@ public class TaskListController {
         model.addAttribute("taskLists", taskListService.findAllWithRoomNumbersAndCameraTypes());
         return "floor/viewFloor";
     }
+
+    @PostMapping("/tasklistsByDate")
+    public String viewTasklistsByDate(@RequestParam("date") LocalDate date, Model model) {
+        List<TaskList> tasklists = taskListService.getTaskListsByDate(date);
+        model.addAttribute("tasklists", tasklists);
+        model.addAttribute("chosenDate", date);
+        return "floor/tasklistsByDate";
+    }
+
 
     @PostMapping("/edit")
     public String update(@RequestParam("roomNumberId") Long roomNumberId, @RequestParam("cameraTypeId") Long cameraTypeId ,@RequestParam("roomTypeId") Long roomTypeId) {

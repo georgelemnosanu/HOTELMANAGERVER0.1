@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,11 @@ public class TaskListService {
             taskListRepository.save(taskList);
         }
 
+
+        public List<TaskList> getTaskListsByDate(LocalDate date){
+           return taskListRepository.findByDate(date);
+        }
+
         public TaskList getTaskListById(Long id) {
             return taskListRepository.findById(id).orElse(null);
         }
@@ -50,6 +56,8 @@ public class TaskListService {
     public List<TaskList> findAllWithRoomNumbersAndCameraTypes() {
         return taskListRepository.findAllWithCameraTypesAndRoomTypes();
     }
+
+
 
 
 
