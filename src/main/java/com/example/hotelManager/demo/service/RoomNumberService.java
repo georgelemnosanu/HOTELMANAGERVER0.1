@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -37,7 +38,7 @@ public class RoomNumberService {
 
     public List<RoomNumber> getAllRoomNumbers(){
         List<RoomNumber> roomNumbers = roomNumberRepository.findAll();
-        Collections.sort(roomNumbers, (r1, r2) -> r1.getNumber().compareTo(r2.getNumber()));
+        Collections.sort(roomNumbers, Comparator.comparing(RoomNumber::getNumber));
         return roomNumbers;
     }
 }

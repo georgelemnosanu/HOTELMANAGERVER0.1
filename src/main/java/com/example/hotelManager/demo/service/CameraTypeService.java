@@ -24,6 +24,10 @@ public class CameraTypeService {
         return cameraTypeRepository.findAll();
     }
 
+    public CameraType getCameraTypeById(Long id) {
+        return cameraTypeRepository.findById(id).orElse(null);
+    }
+
     public void updateCameraTypes(Map<Long, Long> cameraTypes) {
         cameraTypes.forEach((roomNumberId, cameraTypeId) -> {
             CameraType cameraType = cameraTypeRepository.findById(cameraTypeId).orElse(null);

@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Create TaskList</title>
+  <meta charset="UTF-8">
+  <title>Create Task List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-<h1>Create TaskList</h1>
-<form th:action="@{/mvc/floor/submit}" th:object="${taskList}" method="post">
-  <div>
-    <label for="title">User:</label>
-    <input type="text" id="title" th:field="*{title}"/>
-  </div>
-  <div>
-    <label>Room Numbers:</label>
-    <div th:each="roomNumber : ${roomNumbers}">
-      <input type="checkbox" name="roomNumbers" th:value="${roomNumber.id}" th:text="${roomNumber.number}"/>
+<div class="container">
+  <h1 class="text-center">Create Task List</h1>
+  <form action="/mvc/floor/submit" method="post">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title">
     </div>
-  </div>
-  <input type="submit" value="Create Task List"/>
-</form>
+    <div class="form-group">
+      <label for="roomNumber">Select Room Numbers</label>
+      <div th:each="roomNumber : ${roomNumbers}">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">
+          <label class="form-check-label" th:for="roomNumber" th:text="${roomNumber.number}"></label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Task List</button>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
+

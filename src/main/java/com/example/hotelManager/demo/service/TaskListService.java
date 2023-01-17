@@ -22,6 +22,10 @@ import java.util.Map;
         @Autowired
         CameraTypeRepository cameraTypeRepository;
 
+       public void createTaskList(TaskList taskList) {
+          taskListRepository.save(taskList);
+        }
+
         public void saveTaskList(TaskList taskList) {
             taskListRepository.save(taskList);
         }
@@ -37,6 +41,11 @@ import java.util.Map;
         public void deleteTaskListById(Long id) {
             taskListRepository.deleteById(id);
         }
+
+
+    public List<TaskList> findAllWithRoomNumbersAndCameraTypes() {
+        return taskListRepository.findAllWithRoomNumbersAndCameraTypes();
+    }
 
     @Transactional
     public void updateCameraTypes(Long taskListId, Map<Long, Long> cameraTypes) {
