@@ -1,37 +1,27 @@
 package com.example.hotelManager.demo.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-@Data
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name="cameratype")
-@RequiredArgsConstructor
+@Getter
+@Setter
 public class CameraType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "camera_type", nullable = false)
-    private String cameraType;
+    private String name;
 
-
-    public void setId(Integer id) {
+    public CameraType(Long id, String name) {
         this.id = id;
+        this.name = name;
     }
 
-    public void setCameraType(String cameraType) {
-        this.cameraType = cameraType;
-    }
-
-    public CameraType(Integer id, String cameraType) {
-        this.id = id;
-        this.cameraType = cameraType;
-    }
-
-    @Override
-    public String toString() {
-        return cameraType;
-
+    public CameraType() {
     }
 }
