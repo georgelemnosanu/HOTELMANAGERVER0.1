@@ -19,6 +19,31 @@ public class RoomNumber {
     @ManyToOne
     private CameraType cameraType;
 
+    @ManyToOne
+    @JoinColumn(name = "room_type_id")
+    private RoomType roomType;
+
+
+
+
+
+
+    public RoomNumber(Long id, Integer number, Set<TaskList> taskLists, CameraType cameraType, RoomType roomType) {
+        this.id = id;
+        this.number = number;
+        this.taskLists = taskLists;
+        this.cameraType = cameraType;
+        this.roomType = roomType;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
     public RoomNumber(Long id, Integer number, Set<TaskList> taskLists) {
         this.id = id;
         this.number = number;
@@ -42,6 +67,7 @@ public class RoomNumber {
 
     public RoomNumber() {
     }
+
 
     public Long getId() {
         return id;

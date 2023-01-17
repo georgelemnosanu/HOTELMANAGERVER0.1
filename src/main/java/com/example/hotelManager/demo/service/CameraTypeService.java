@@ -28,18 +28,7 @@ public class CameraTypeService {
         return cameraTypeRepository.findById(id).orElse(null);
     }
 
-    public void updateCameraTypes(Map<Long, Long> cameraTypes) {
-        cameraTypes.forEach((roomNumberId, cameraTypeId) -> {
-            CameraType cameraType = cameraTypeRepository.findById(cameraTypeId).orElse(null);
-            if (cameraType != null) {
-                RoomNumber roomNumber = roomNumberRepository.findById(roomNumberId).orElse(null);
-                if (roomNumber != null) {
-                    roomNumber.setCameraType(cameraType);
-                    roomNumberRepository.save(roomNumber);
-                }
-            }
-        });
-    }
+
 
     public CameraType getDefaultCameraType() {
         //retrieve default camera type from repository or hardcoded

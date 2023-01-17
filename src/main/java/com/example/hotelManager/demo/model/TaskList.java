@@ -2,6 +2,7 @@ package com.example.hotelManager.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class TaskList {
     @JoinTable(name = "task_list_room_number",
             joinColumns = @JoinColumn(name = "task_list_id"),
             inverseJoinColumns = @JoinColumn(name = "room_number_id"))
-    private Set<RoomNumber> roomNumbers;
+    private List<RoomNumber> roomNumbers;
 
 
     public TaskList() {
@@ -40,11 +41,11 @@ public class TaskList {
         this.title = title;
     }
 
-    public Set<RoomNumber> getRoomNumbers() {
+    public List<RoomNumber> getRoomNumbers() {
         return roomNumbers;
     }
 
-    public void setRoomNumbers(Set<RoomNumber> roomNumbers) {
+    public void setRoomNumbers(List<RoomNumber> roomNumbers) {
         this.roomNumbers = roomNumbers;
     }
 }
