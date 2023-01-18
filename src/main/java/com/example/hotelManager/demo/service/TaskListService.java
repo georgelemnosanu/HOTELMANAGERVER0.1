@@ -3,12 +3,14 @@ package com.example.hotelManager.demo.service;
 import com.example.hotelManager.demo.model.CameraType;
 import com.example.hotelManager.demo.model.RoomNumber;
 import com.example.hotelManager.demo.model.TaskList;
+import com.example.hotelManager.demo.model.User;
 import com.example.hotelManager.demo.repository.CameraTypeRepository;
 import com.example.hotelManager.demo.repository.RoomTypeRepository;
 import com.example.hotelManager.demo.repository.TaskListRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -59,6 +61,12 @@ public class TaskListService {
 
 
 
+
+
+
+    public List<TaskList> findByUser(User user) {
+        return taskListRepository.findByUser(user);
+    }
 
 
     @Transactional

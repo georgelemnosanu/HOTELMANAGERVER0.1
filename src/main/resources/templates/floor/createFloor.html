@@ -28,11 +28,13 @@
   <form action="/mvc/floor/submit" method="post">
     <div class="form-group">
       <label for="date">Date</label>
-      <input type="date" class="form-control" id="date" name="date" required>
+      <input type="date" class="form-control" id="date" name="date" th:value="${chosenDate}" required>
     </div>
     <div class="form-group">
-      <label for="title">User</label>
-      <input type="text" class="form-control" id="title" name="title">
+      <label for="user">Select User</label>
+      <select class="form-control" id="user" name="userId">
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.userName}"></option>
+      </select>
     </div>
     <div class="form-group">
       <label for="roomNumber">Select Room Numbers</label>

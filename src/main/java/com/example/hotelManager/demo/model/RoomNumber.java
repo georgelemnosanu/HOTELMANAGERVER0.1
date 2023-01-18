@@ -2,6 +2,7 @@ package com.example.hotelManager.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class RoomNumber {
     private Integer number;
 
     @ManyToMany(mappedBy = "roomNumbers")
-    private Set<TaskList> taskLists;
+    private List<TaskList> taskLists;
 
     @ManyToOne
     private CameraType cameraType;
@@ -28,7 +29,7 @@ public class RoomNumber {
 
 
 
-    public RoomNumber(Long id, Integer number, Set<TaskList> taskLists, CameraType cameraType, RoomType roomType) {
+    public RoomNumber(Long id, Integer number, List<TaskList> taskLists, CameraType cameraType, RoomType roomType) {
         this.id = id;
         this.number = number;
         this.taskLists = taskLists;
@@ -44,7 +45,7 @@ public class RoomNumber {
         this.roomType = roomType;
     }
 
-    public RoomNumber(Long id, Integer number, Set<TaskList> taskLists) {
+    public RoomNumber(Long id, Integer number, List<TaskList> taskLists) {
         this.id = id;
         this.number = number;
         this.taskLists = taskLists;
@@ -54,7 +55,7 @@ public class RoomNumber {
         return cameraType;
     }
 
-    public RoomNumber(Long id, Integer number, Set<TaskList> taskLists, CameraType cameraType) {
+    public RoomNumber(Long id, Integer number, List<TaskList> taskLists, CameraType cameraType) {
         this.id = id;
         this.number = number;
         this.taskLists = taskLists;
@@ -85,11 +86,11 @@ public class RoomNumber {
         this.number = number;
     }
 
-    public Set<TaskList> getTaskLists() {
+    public List<TaskList> getTaskLists() {
         return taskLists;
     }
 
-    public void setTaskLists(Set<TaskList> taskLists) {
+    public void setTaskLists(List<TaskList> taskLists) {
         this.taskLists = taskLists;
     }
 

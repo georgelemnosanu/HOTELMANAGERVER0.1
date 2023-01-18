@@ -1,13 +1,7 @@
 package com.example.hotelManager.demo.controller;
 
-import com.example.hotelManager.demo.model.CameraType;
-import com.example.hotelManager.demo.model.RoomNumber;
-import com.example.hotelManager.demo.model.RoomType;
-import com.example.hotelManager.demo.model.TaskList;
-import com.example.hotelManager.demo.service.CameraTypeService;
-import com.example.hotelManager.demo.service.RoomNumberService;
-import com.example.hotelManager.demo.service.RoomTypeService;
-import com.example.hotelManager.demo.service.TaskListService;
+import com.example.hotelManager.demo.model.*;
+import com.example.hotelManager.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,15 +27,22 @@ public class TaskListController {
     @Autowired
     RoomTypeService roomTypeService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/createFloor")
     public String createTaskList(Model model) {
         model.addAttribute("taskList", new TaskList());
         model.addAttribute("roomNumbers", roomNumberService.getAllRoomNumbers());
+        model.addAttribute("chosenDate", LocalDate.now());
+        model.addAttribute("users", userService.getAllUsers());
         return "floor/createFloor";
     }
 
     @PostMapping(value="/submit")
-    public String submitTaskList(@ModelAttribute("taskList") TaskList taskList, @RequestParam("roomNumbers") List<Long> roomNumberIds, Model model) {
+    public String submitTaskList(@ModelAttribute("taskList") TaskList taskList, Model model, @RequestParam("userId") Long userId) {
+        User user = userService.getUserById(userId);
+        taskList.setUser(user);
         for (RoomNumber roomNumber : taskList.getRoomNumbers()) {
             roomNumber.setCameraType(cameraTypeService.getDefaultCameraType());
             roomNumber.setRoomType(roomTypeService.getDefaultRoomType());
@@ -57,6 +58,7 @@ public class TaskListController {
         model.addAttribute("taskLists", taskListService.findAllWithRoomNumbersAndCameraTypes());
         return "floor/viewFloor";
     }
+
 
     @PostMapping("/tasklistsByDate")
     public String viewTasklistsByDate(@RequestParam("date") LocalDate date, Model model) {
@@ -85,5 +87,8 @@ public class TaskListController {
 //        return "redirect:/tasklists/" + id;
 //    }
 //
+
+
+
 
 }

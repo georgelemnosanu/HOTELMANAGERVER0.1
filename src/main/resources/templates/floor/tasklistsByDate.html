@@ -46,7 +46,7 @@
             </thead>
             <tbody>
             <tr th:each="taskList : ${tasklists}">
-                <td th:text="${taskList.title}"></td>
+                <td th:text="${taskList.user}"></td>
                 <td th:text="${taskList.date}"></td>
                 <td>
                     <div th:each="roomNumber : ${taskList.roomNumbers}">

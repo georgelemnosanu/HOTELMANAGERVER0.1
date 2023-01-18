@@ -12,8 +12,9 @@ public class TaskList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String title;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private LocalDate date;
 
@@ -26,7 +27,6 @@ public class TaskList {
 
     public TaskList(Long id, String title, LocalDate date, List<RoomNumber> roomNumbers) {
         this.id = id;
-        this.title = title;
         this.date = date;
         this.roomNumbers = roomNumbers;
     }
@@ -51,13 +51,6 @@ public class TaskList {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public List<RoomNumber> getRoomNumbers() {
         return roomNumbers;
@@ -68,4 +61,18 @@ public class TaskList {
     }
 
 
+    public TaskList(Long id, User user, LocalDate date, List<RoomNumber> roomNumbers) {
+        this.id = id;
+        this.user = user;
+        this.date = date;
+        this.roomNumbers = roomNumbers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

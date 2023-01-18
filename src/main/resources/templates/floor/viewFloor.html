@@ -78,7 +78,7 @@
     <tbody>
     <tr th:each="taskList : ${taskLists}">
       <td style="text-align: center" th:text="${taskList.id}"></td>
-      <td style="text-align: center" th:text="${taskList.title}"></td>
+      <td style="text-align: center" th:text="${taskList.user}"></td>
       <td style="text-align: center" th:text="${taskList.date}"></td>
       <td>
         <table>
