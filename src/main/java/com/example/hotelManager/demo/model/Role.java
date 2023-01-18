@@ -49,5 +49,10 @@ public class Role {
     public Role() {
     }
 
+    @Override
+    public String toString() {
+        return  name ;
+    }
+
     // Getters and setters
 }

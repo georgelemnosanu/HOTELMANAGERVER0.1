@@ -10,4 +10,12 @@ public class HomePageController {
             model.addAttribute("message","Welcome Hotel Manager v1 ");
             return "index";
         }
+
+
+    @GetMapping("/userCreated")
+    public String create(Model model){
+        model.addAttribute("message", "User created successfully!");
+        return "userCreated";
+    }
+
 }

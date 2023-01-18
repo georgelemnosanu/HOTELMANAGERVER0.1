@@ -26,14 +26,16 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User findUserByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
 
-    public User createUser(String userName, String password, String roleName) {
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
-        Role role = roleRepository.findByName(roleName);
-        user.addRole(role);
-        userRepository.save(user);
-        return user;
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+         userRepository.deleteById(id);
     }
 }
