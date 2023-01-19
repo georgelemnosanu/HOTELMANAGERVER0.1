@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>DASHBOARD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,26 +27,28 @@
 </nav>
 <div class="container">
     <h1 class="text-center">DASHBOARD</h1>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>User Name</th>
-            <th>Role</th>
-            <th>Edit</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="users : ${users}">
-            <td style="text-align: center" th:text="${users.id}"></td>
-            <td style="text-align: center" th:text="${users.userName}"></td>
-            <td style="text-align: center" th:text="${users.roles}"></td>
-            <td>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <h1 class="text-center my-3">Edit Users</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.roles[0].name}"></td>
+                <td>
+                    <a th:href="@{/mvc/user/edit/{id}(id=${user.id})}" class="btn btn-primary mr-3">Edit</a>
+                    <a th:href="@{/mvc/user/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

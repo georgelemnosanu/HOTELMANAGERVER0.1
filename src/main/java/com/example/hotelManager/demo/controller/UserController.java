@@ -30,25 +30,70 @@ public class UserController {
 
 
 
-
-
-
       @GetMapping("/createUser")
-      public String createTaskList(Model model) {
+      public String createUser(Model model) {
           model.addAttribute("roles",roleRepository.findAll());
           model.addAttribute("user",new User());
           return "user/createUser";
       }
 
 
-    @PostMapping(value="/submitUser")
-    public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam("role") String role, Model model) {
+//    @PostMapping(value="/submitUser")
+//    public String createUser(@ModelAttribute("user") User user,
+//                             @RequestParam("role") String role, Model model) {
+//
+//        Role userRole = roleService.findByName(role);
+//        user.setRoles(Collections.singleton(userRole));
+//        userService.saveUser(user);
+//        return "redirect:/userCreated";
+//    }
 
-        Role userRole = roleService.findByName(role);
-        user.setRoles(Collections.singleton(userRole));
-        userService.saveUser(user);
+    @PostMapping(value="/submitUser")
+    public String createUser(@RequestParam("username") String username,
+                             @RequestParam("password") String password,
+                             @RequestParam("role") String role) {
+          userService.createUser(username,password,role);
         return "redirect:/userCreated";
+    }
+
+    @GetMapping("/editUser")
+    public String getAllUser(Model model){
+        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("roles",roleRepository.findAll());
+        return "/user/editUser";
+    }
+
+
+    @GetMapping("/edit/{id}")
+    public String getEditUser(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("roles", roleRepository.findAll());
+        return "user/edit";
+    }
+
+//    @PostMapping("/edit")
+//    public String postEditUser(@RequestParam("id") Long id,
+//                               @RequestParam("username") String username,
+//                               @RequestParam("password") String password,
+//                               @RequestParam("role") String role) {
+//        userService.updateUser(id, username, password, role);
+//        return "redirect:/userCreated";
+//    }
+
+
+    @PostMapping("/edit")
+    public String postEditUser(@RequestParam("id") Long id,
+                               @RequestParam("username") String username,
+                               @RequestParam("password") String password) {
+        userService.updateUser(id, username, password);
+        return "redirect:/mvc/user/editUser";
+    }
+
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "redirect:/mvc/user/editUser";
     }
 
 

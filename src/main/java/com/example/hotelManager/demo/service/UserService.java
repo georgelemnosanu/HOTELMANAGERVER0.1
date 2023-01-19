@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -30,12 +31,34 @@ public class UserService {
         return userRepository.findByUserName(userName);
     }
 
+    public void createUser(String username, String password, String roleName) {
+        if (userRepository.findByUserName(username) != null) {
+            throw new IllegalArgumentException("A user with the username " + username + " already exists.");
+        } else {
+            User user = new User();
+            user.setUserName(username);
+            user.setPassword(password);
+            Role role = roleRepository.findByName(roleName);
+            user.setRoles(Collections.singleton(role));
+            userRepository.save(user);
+        }
+    }
 
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+    public void updateUser(Long id, String username, String password) {
+        User user = userRepository.findById(id).get();
+        user.setUserName(username);
+        user.setPassword(password);
+//        Role role = roleRepository.findByName(roleName);
+//        user.setRoles(Collections.singleton(role));
+        userRepository.save(user);
+    }
+
 
     public void deleteUser(Long id) {
-         userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
+
 }
