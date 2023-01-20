@@ -1,9 +1,52 @@
 
-
-
-
-
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-5">Create User</h1>
+    <form th:action="@{/mvc/user/submitUser}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" th:value="${user.password}"/>
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="viewPasswordBtn">View Password</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select class="form-control" id="role" name="role" required>
+                <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create User</button>
+    </form>
+    <div th:if="${errorMessage}" class="alert alert-danger my-3" th:text="${errorMessage}"></div>
+</div>
+<script>$(document).ready(function() {
+    $("#viewPasswordBtn").on("click", function() {
+        var passwordInput = $("#password");
+        if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+            $(this).text("Hide Password");
+        } else {
+            passwordInput.attr("type", "password");
+            $(this).text("View Password");
+        }
+    });
+});</script>
+</body>
+</html>
 
 
 

@@ -11,6 +11,7 @@
 <body>
 <div class="container">
   <h1 class="text-center my-5">Edit User</h1>
+
   <form th:action="@{/mvc/user/edit}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <div class="form-group">
@@ -26,7 +27,7 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Create Task List</button>
+    <button type="submit" class="btn btn-primary">EDIT</button>
   </form>
 </div>
 
