@@ -23,6 +23,8 @@ public interface TaskListRepository extends JpaRepository<TaskList,Long> {
 
     List<TaskList> findByUser(User user);
 
+    List<TaskList> findByUserId(Long userId);
+
 
     @Query(value = "SELECT tasklist FROM TaskList tasklist JOIN tasklist.roomNumbers roomnumber JOIN roomnumber.cameraType JOIN roomnumber.roomType ORDER BY tasklist.id, roomnumber.number ASC")
     Page<TaskList> findAllWithCameraTypesAndRoomTypes(Pageable pageable);

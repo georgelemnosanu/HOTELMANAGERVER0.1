@@ -95,6 +95,13 @@ public class UserController {
     }
 
 
+    @GetMapping("/delete/{id}")
+    public String getDeleteUser(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user/delete";
+    }
+
+
     @GetMapping("/edit/{id}")
     public String getEditUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));

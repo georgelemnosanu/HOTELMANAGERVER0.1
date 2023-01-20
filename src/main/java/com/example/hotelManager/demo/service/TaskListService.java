@@ -7,6 +7,7 @@ import com.example.hotelManager.demo.model.User;
 import com.example.hotelManager.demo.repository.CameraTypeRepository;
 import com.example.hotelManager.demo.repository.RoomTypeRepository;
 import com.example.hotelManager.demo.repository.TaskListRepository;
+import com.example.hotelManager.demo.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class TaskListService {
 
         @Autowired
         RoomTypeRepository roomTypeRepository;
+
+        @Autowired
+        UserRepository userRepository;
 
        public void createTaskList(TaskList taskList) {
           taskListRepository.save(taskList);
@@ -59,9 +63,9 @@ public class TaskListService {
         return taskListRepository.findAllWithCameraTypesAndRoomTypes();
     }
 
-
-
-
+    public List<TaskList> getTaskListsByUserId(Long userId) {
+        return taskListRepository.findByUserId(userId);
+    }
 
 
     public List<TaskList> findByUser(User user) {

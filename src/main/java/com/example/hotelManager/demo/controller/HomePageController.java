@@ -1,5 +1,6 @@
 package com.example.hotelManager.demo.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,5 +18,23 @@ public class HomePageController {
         model.addAttribute("message", "User created successfully!");
         return "userCreated";
     }
+
+    @GetMapping("/default")
+    public String succesPage(HttpServletRequest request){
+        if(request.isUserInRole("ADMIN")){
+            return "redirect:/";
+        }
+        else
+            return "redirect:/indexUser";
+    }
+
+    @GetMapping("/indexUser")
+    public String userHome(){
+            return "indexUser";
+    }
+
+
+
+
 
 }

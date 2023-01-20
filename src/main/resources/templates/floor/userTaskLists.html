@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Task Lists</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">My Hotel Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/mvc/floor/createFloor">Create Task List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center">View Task List</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Task List ID</th>
+            <th>User Name</th>
+            <th>Date</th>
+            <th>Room Numbers</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="taskList : ${taskLists}">
+            <td style="text-align: center" th:text="${taskList.id}"></td>
+            <td style="text-align: center" th:text="${taskList.date}"></td>
+            <td>
+                <table>
+                    <tr th:each="roomNumber : ${taskList.roomNumbers}">
+                        <td style="text-align: center" th:text="${roomNumber.number}"></td>
+                        <td>
+                            <form th:action="@{/mvc/floor/editUser}" method="post">
+                                <input type="hidden" th:name="roomNumberId" th:value="${roomNumber.id}"/>
+                                <select th:name="roomTypeId" th:required="required">
+                                    <option th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomType.id == roomNumber.roomType.id}"></option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
