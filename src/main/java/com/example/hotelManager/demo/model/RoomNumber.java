@@ -94,5 +94,4 @@ public class RoomNumber {
         this.taskLists = taskLists;
     }
 
-    // constructor, getters, and setters
 }

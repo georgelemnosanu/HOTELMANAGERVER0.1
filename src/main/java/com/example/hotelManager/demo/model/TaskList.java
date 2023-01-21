@@ -18,10 +18,10 @@ public class TaskList {
 
     private LocalDate date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "task_list_room_number",
             joinColumns = @JoinColumn(name = "task_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_number_id"))
+          inverseJoinColumns = @JoinColumn(name = "room_number_id"))
     private List<RoomNumber> roomNumbers;
 
 

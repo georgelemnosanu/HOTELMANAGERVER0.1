@@ -19,6 +19,11 @@ public class HomePageController {
         return "userCreated";
     }
 
+    @GetMapping("/userError")
+    public String userError(){
+            return "userError";
+    }
+
     @GetMapping("/default")
     public String succesPage(HttpServletRequest request){
         if(request.isUserInRole("ADMIN")){
@@ -33,6 +38,10 @@ public class HomePageController {
             return "indexUser";
     }
 
+    @GetMapping("/userDeleteConfirm")
+    public String deleteUserConfirmation(){
+            return "userDeleteConfirm";
+    }
 
 
 

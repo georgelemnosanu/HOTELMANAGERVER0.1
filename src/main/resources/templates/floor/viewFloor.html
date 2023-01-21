@@ -37,6 +37,8 @@
   <meta charset="UTF-8">
   <title>View Task List</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/viewFloor.css}">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -68,31 +70,38 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>Id</th>
-      <th>User Name</th>
-      <th>Date</th>
-      <th>Room Numbers</th>
+      <th style="text-align: center">Id</th>
+      <th style="text-align: center">User Name</th>
+      <th style="text-align: center">Date</th>
+      <th style="text-align: center">Room Numbers</th>
+      <th style="text-align: center">Delete</th>
 
     </tr>
     </thead>
     <tbody>
     <tr th:each="taskList : ${taskLists}">
-      <td style="text-align: center" th:text="${taskList.id}"></td>
-      <td style="text-align: center" th:text="${taskList.user}"></td>
-      <td style="text-align: center" th:text="${taskList.date}"></td>
+      <td style="text-align: center; font-weight: bold; padding-top: 135px; background-color: #f2f2f2; transition: all 0.3s ease-in-out;"  th:text="${taskList.id}"></td>
+      <td style="text-align: center; font-weight: bold; padding-top: 135px; background-color: #f2f2f2; transition: all 0.3s ease-in-out;" th:text="${taskList.user}"></td>
+      <td style="text-align: center; font-weight: bold; padding-top: 135px; background-color: #f2f2f2; transition: all 0.3s ease-in-out;"  th:text="${taskList.date}"></td>
       <td>
-        <table>
+        <table class="table table-sm">
+          <tr>
+            <th style="text-align: center">Room Number:</th>
+            <th style="text-align: center">Room Status:</th>
+          </tr>
           <tr th:each="roomNumber : ${taskList.roomNumbers}">
-            <td style="text-align: center" th:text="${roomNumber.number}"></td>
-            <td>
+            <td th:class="${roomNumber.roomType.id == 1} ? 'room-type-1' : (${roomNumber.roomType.id == 2} ? 'room-type-2' : (${roomNumber.roomType.id == 3} ? 'room-type-3' : 'room-type-4'))"
+                style="text-align: center; padding-top: 13px; font-weight: bold"
+                th:text="${roomNumber.number}"></td>
+            <td style="padding-left: 75px">
               <form th:action="@{/mvc/floor/edit}" method="post">
                 <input type="hidden" th:name="roomNumberId" th:value="${roomNumber.id}"/>
-                <select th:name="cameraTypeId" th:required="required">
-                  <option th:each="cameraType : ${cameraTypes}" th:value="${cameraType.id}" th:text="${cameraType.name}" th:selected="${cameraType.id == roomNumber.cameraType.id}"></option>
+                <select style="font-weight: bold" th:name="cameraTypeId" th:required="required">
+                  <option style="font-weight: bold" th:each="cameraType : ${cameraTypes}" th:value="${cameraType.id}" th:text="${cameraType.name}" th:selected="${cameraType.id == roomNumber.cameraType.id}"></option>
                 </select>
                 <button type="submit" class="btn btn-primary">Update</button>
-                <select th:name="roomTypeId" th:required="required">
-                  <option th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomType.id == roomNumber.roomType.id}"></option>
+                <select style="font-weight: bold" th:name="roomTypeId" th:required="required">
+                  <option style="font-weight: bold" th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomType.id == roomNumber.roomType.id}"></option>
                 </select>
                 <button type="submit" class="btn btn-primary">Update</button>
               </form>
@@ -100,9 +109,32 @@
           </tr>
         </table>
       </td>
+      <td>
+        <form style="text-align: center; font-weight: bold; padding-top: 100px; background-color: #f2f2f2; transition: all 0.3s ease-in-out;"  id="deleteForm" th:action="@{/mvc/floor/delete/{id}(id=${taskList.id})}" method="post">
+          <button id="deleteBtn" class="btn btn-danger" type="submit">Delete</button>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
+<script>
+  document.querySelector("#deleteBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    }).then(result => {
+      if (result.value) {
+        document.querySelector("#deleteForm").submit();
+      }
+    });
+  });
+</script>
 </body>
 </html>

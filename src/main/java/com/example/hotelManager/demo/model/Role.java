@@ -32,14 +32,6 @@ public class Role {
     }
 
 
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
-
     public Role(Long id, String name, Set<User> users) {
         this.id = id;
         this.name = name;
@@ -54,5 +46,5 @@ public class Role {
         return  name ;
     }
 
-    // Getters and setters
+
 }

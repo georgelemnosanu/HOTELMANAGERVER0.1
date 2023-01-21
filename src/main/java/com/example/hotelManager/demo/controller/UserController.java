@@ -1,8 +1,7 @@
 package com.example.hotelManager.demo.controller;
 
 import com.example.hotelManager.demo.exception.UserAlreadyExistsException;
-import com.example.hotelManager.demo.model.Role;
-import com.example.hotelManager.demo.model.TaskList;
+
 import com.example.hotelManager.demo.model.User;
 import com.example.hotelManager.demo.repository.RoleRepository;
 import com.example.hotelManager.demo.repository.UserRepository;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Collections;
 
 @RequestMapping("/mvc/user")
 @Controller
@@ -33,72 +30,51 @@ public class UserController {
     UserRepository userRepository;
 
 
+    @GetMapping("/createUser")
+    public String createUser(Model model) {
+        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("user", new User());
+        return "user/createUser";
+    }
 
-      @GetMapping("/createUser")
-      public String createUser(Model model) {
-          model.addAttribute("roles",roleRepository.findAll());
-          model.addAttribute("user",new User());
-          return "user/createUser";
-      }
 
-
-//    @PostMapping(value="/submitUser")
-//    public String createUser(@ModelAttribute("user") User user,
-//                             @RequestParam("role") String role, Model model) {
-//
-//        Role userRole = roleService.findByName(role);
-//        user.setRoles(Collections.singleton(userRole));
-//        userService.saveUser(user);
-//        return "redirect:/userCreated";
-//    }
-
-//    @PostMapping(value="/submitUser")
-//    public String createUser(@RequestParam("username") String username,
-//                             @RequestParam("password") String password,
-//                             @RequestParam("role") String role) {
-//          userService.createUser(username,password,role);
-//        return "redirect:/userCreated";
-//    }
-
-//    @PostMapping(value="/submitUser")
-//    public String createUser(@RequestParam("username") String userName,
-//                             @RequestParam("password") String password,
-//                             @RequestParam("role") String role,Model model) {
-//        if(userService.existsByUserName(userName)){
-//            model.addAttribute("error","User already exist");
-//            return "redirect:/error";
-//        }
-//        userService.createUser(userName,password,role);
-//        return "redirect:/userCreated";
-//    }
-
-    @PostMapping(value="/submitUser")
+    @PostMapping(value = "/submitUser")
     public String createUser(@RequestParam("username") String username,
                              @RequestParam("password") String password,
                              @RequestParam("role") String role,
                              Model model) {
-        try{
-            userService.createUser(username,password,role);
-        } catch(UserAlreadyExistsException e) {
+        try {
+            userService.createUser(username, password, role);
+        } catch (UserAlreadyExistsException e) {
             model.addAttribute("errorMessage", "A user with this username already exists");
-            return "redirect:/error";
+            return "redirect:/userError";
         }
         return "redirect:/userCreated";
     }
 
 
     @GetMapping("/editUser")
-    public String getAllUser(Model model){
+    public String getAllUser(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("roles",roleRepository.findAll());
+        model.addAttribute("roles", roleRepository.findAll());
         return "/user/editUser";
     }
 
 
-    @GetMapping("/delete/{id}")
-    public String getDeleteUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "user/delete";
+//    @GetMapping("/delete/{id}")
+//    public String getDeleteUser(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("user", userService.getUserById(id));
+//        return "/user/delete";
+//    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        try {
+            userService.deleteUser(id);
+        } catch (Exception e) {
+            return "redirect:/mvc/error";
+        }
+        return "redirect:/mvc/user/editUser";
     }
 
 
@@ -108,15 +84,6 @@ public class UserController {
         model.addAttribute("roles", roleRepository.findAll());
         return "user/edit";
     }
-
-//    @PostMapping("/edit")
-//    public String postEditUser(@RequestParam("id") Long id,
-//                               @RequestParam("username") String username,
-//                               @RequestParam("password") String password,
-//                               @RequestParam("role") String role) {
-//        userService.updateUser(id, username, password, role);
-//        return "redirect:/userCreated";
-//    }
 
 
     @PostMapping("/edit")
@@ -128,18 +95,10 @@ public class UserController {
             userService.updateUser(id, username, password);
         } catch(UserAlreadyExistsException e) {
             model.addAttribute("errorMessage", "A user with this username already exists");
-            return "redirect:/error";
+            return "redirect:/userError";
         }
-//        userService.updateUser(id, username, password);
         return "redirect:/mvc/user/editUser";
     }
-
-
-//    @GetMapping("/delete/{id}")
-//    public String deleteUser(@PathVariable("id") Long id) {
-//        userService.deleteUser(id);
-//        return "redirect:/mvc/user/editUser";
-//    }
 
 
 

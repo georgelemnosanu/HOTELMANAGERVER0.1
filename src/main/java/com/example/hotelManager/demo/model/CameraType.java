@@ -24,4 +24,9 @@ public class CameraType {
 
     public CameraType() {
     }
+
+    @Override
+    public String toString() {
+        return name ;
+    }
 }

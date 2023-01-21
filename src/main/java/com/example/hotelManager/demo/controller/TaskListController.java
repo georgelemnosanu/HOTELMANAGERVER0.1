@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+
 
 @RequestMapping("/mvc/floor")
 @Controller
@@ -89,6 +88,11 @@ public class TaskListController {
         return "redirect:/mvc/floor/userTaskLists";
     }
 
+//    @PostMapping("/deleteTask")
+//    public String deleteTask(@RequestParam TaskList taskList){
+//
+//    }
+
 
     @PostMapping("/tasklistsByDate")
     public String viewTasklistsByDate(@RequestParam("date") LocalDate date, Model model) {
@@ -96,6 +100,12 @@ public class TaskListController {
         model.addAttribute("tasklists", tasklists);
         model.addAttribute("chosenDate", date);
         return "floor/tasklistsByDate";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+            taskListService.deleteTaskListById(id);
+            return "redirect:/mvc/floor/viewFloor";
     }
 
 
@@ -110,13 +120,6 @@ public class TaskListController {
         return "redirect:/mvc/floor/viewFloor";
     }
 
-
-//    @PostMapping("/tasklists/{id}/camera-types")
-//    public String updateCameraTypes(@PathVariable Long id, @RequestParam Map<Long, Long> cameraTypes) {
-//        taskListService.updateCameraTypes(id, cameraTypes);
-//        return "redirect:/tasklists/" + id;
-//    }
-//
 
 
 
