@@ -24,6 +24,13 @@ public class HomePageController {
             return "userError";
     }
 
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+
     @GetMapping("/default")
     public String succesPage(HttpServletRequest request){
         if(request.isUserInRole("ADMIN")){

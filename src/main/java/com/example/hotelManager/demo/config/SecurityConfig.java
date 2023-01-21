@@ -27,10 +27,10 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring().requestMatchers("/"));
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web -> web.ignoring().requestMatchers("/"));
+//    }
 
 
     @Bean
@@ -41,6 +41,7 @@ public class SecurityConfig {
                 .authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .defaultSuccessUrl("/default",true)
                  .permitAll()
                 .and()
