@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @RequestMapping("/mvc/floor")
@@ -37,14 +40,34 @@ public class TaskListController {
     UserService userService;
 
 
+//    @GetMapping("/createFloor")
+//    public String createTaskList(Model model) {
+//        model.addAttribute("taskList", new TaskList());
+//        model.addAttribute("roomNumbers", roomNumberService.getAllRoomNumbers());
+//        model.addAttribute("chosenDate", LocalDate.now());
+//        model.addAttribute("users", userService.getAllUsers());
+//        return "floor/createFloor";
+//    }
+
     @GetMapping("/createFloor")
     public String createTaskList(Model model) {
+        List<RoomNumber> roomNumbers = roomNumberService.getAllRoomNumbers();
+        Map<Integer, List<RoomNumber>> roomNumberGroups = new HashMap<>();
+
+        roomNumberGroups.put(1, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 1 && roomNumber.getNumber() <= 15)
+                .collect(Collectors.toList()));
+        roomNumberGroups.put(2, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 101 && roomNumber.getNumber() <= 128)
+                .collect(Collectors.toList()));
+        model.addAttribute("roomNumberGroups", roomNumberGroups);
         model.addAttribute("taskList", new TaskList());
-        model.addAttribute("roomNumbers", roomNumberService.getAllRoomNumbers());
         model.addAttribute("chosenDate", LocalDate.now());
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("roomNumbers",roomNumbers);
         return "floor/createFloor";
     }
+
 
     @PostMapping(value="/submit")
     public String submitTaskList(@ModelAttribute("taskList") TaskList taskList, Model model, @RequestParam("userId") Long userId) {
