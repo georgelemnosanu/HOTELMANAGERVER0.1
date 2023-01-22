@@ -57,7 +57,7 @@ public class UserController {
     public String getAllUser(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("roles", roleRepository.findAll());
-        return "/user/editUser";
+        return "user/editUser";
     }
 
 
