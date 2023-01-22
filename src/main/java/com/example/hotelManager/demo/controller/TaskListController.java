@@ -60,6 +60,21 @@ public class TaskListController {
         roomNumberGroups.put(2, roomNumbers.stream()
                 .filter(roomNumber -> roomNumber.getNumber() >= 101 && roomNumber.getNumber() <= 128)
                 .collect(Collectors.toList()));
+        roomNumberGroups.put(3, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 201 && roomNumber.getNumber() <= 231)
+                .collect(Collectors.toList()));
+        roomNumberGroups.put(4, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 301 && roomNumber.getNumber() <= 331)
+                .collect(Collectors.toList()));
+        roomNumberGroups.put(5, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 401 && roomNumber.getNumber() <= 431)
+                .collect(Collectors.toList()));
+        roomNumberGroups.put(6, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 501 && roomNumber.getNumber() <= 531)
+                .collect(Collectors.toList()));
+        roomNumberGroups.put(7, roomNumbers.stream()
+                .filter(roomNumber -> roomNumber.getNumber() >= 601 && roomNumber.getNumber() <= 615)
+                .collect(Collectors.toList()));
         model.addAttribute("roomNumberGroups", roomNumberGroups);
         model.addAttribute("taskList", new TaskList());
         model.addAttribute("chosenDate", LocalDate.now());

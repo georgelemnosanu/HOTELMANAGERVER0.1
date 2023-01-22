@@ -1,0 +1,15 @@
+.checkbox-container {
+    padding-right: 5px; /* or whatever value you want to use */
+}
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px; /* or whatever value you want to use */
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    font-size: 0.5em; /* or whatever value you want to use */
+}
