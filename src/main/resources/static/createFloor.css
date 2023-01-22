@@ -13,3 +13,44 @@
 .checkbox-container input[type="checkbox"] {
     font-size: 0.5em; /* or whatever value you want to use */
 }
+
+
+
+
+/* Default styles */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    /* Change the font size and line height for smaller screens */
+    body {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    /* Make the navigation menu into a "hamburger" button */
+    .navbar-collapse {
+        display: none;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+}
+
+/* Default button styles */
+button {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    /* Increase the button padding and font size for smaller screens */
+    button {
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+}
