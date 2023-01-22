@@ -12,3 +12,30 @@
 .room-type-4 {
     background-color: blue;
 }
+
+
+/* Default styles */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    /* Change the font size and line height for smaller screens */
+    body {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    /* Make the table cells and buttons larger for smaller screens */
+    th, td, button {
+        font-size: 16px;
+    }
+    /* Make the navigation menu into a "hamburger" button */
+    .navbar-collapse {
+        display: none;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+}
