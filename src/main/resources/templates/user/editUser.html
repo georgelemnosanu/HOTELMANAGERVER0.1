@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Users</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <title>Create User</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">My Hotel Manager</a>
+    <a class="navbar-brand" href="#">My Hotel Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,61 +15,141 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a class="nav-link" href="/mvc/user/editUser">EditUser</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
         </ul>
     </div>
 </nav>
 <div class="container">
-    <h1 class="text-center my-3">Edit Users</h1>
-    <div class="container h-50 d-flex justify-content-center align-items-center">
-        <div class="jumbotron text-center">
-    <a class="btn btn-primary btn-lg" href="/mvc/user/createUser" role="button">Create User</a>
+    <h1 class="text-center my-5">Create User</h1>
+    <form th:action="@{/mvc/user/submitUser}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" th:value="${user.password}"/>
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="viewPasswordBtn">View Password</button>
+                </div>
             </div>
         </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.userName}"></td>
-            <td th:text="${user.roles[0].name}"></td>
-            <td>
-                <a th:href="@{/mvc/user/edit/{id}(id=${user.id})}" class="btn btn-primary mr-3">Edit</a>
-                <form style="display:inline-block" th:action="@{/mvc/user/delete/{id}(id=${user.id})}" method="post" id="deleteForm">
-                    <button class="btn btn-danger" type="button" onclick="showDeleteConfirmation()">Delete</button>
-                </form>
-            </td>
-
-        </tr>
-        </tbody>
-    </table>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select class="form-control" id="role" name="role" required>
+                <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create User</button>
+    </form>
+    <div th:if="${errorMessage}" class="alert alert-danger my-3" th:text="${errorMessage}"></div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-    function showDeleteConfirmation() {
-        // Show the SweetAlert
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'This action cannot be undone.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Delete',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.value) {
-                // If the user confirms, submit the form
-                document.getElementById("deleteForm").submit();
-            }
-        });
-    }
-</script>
+<script>$(document).ready(function() {
+    $("#viewPasswordBtn").on("click", function() {
+        var passwordInput = $("#password");
+        if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+            $(this).text("Hide Password");
+        } else {
+            passwordInput.attr("type", "password");
+            $(this).text("View Password");
+        }
+    });
+});</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Edit Users</title>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <a class="navbar-brand" href="/">My Hotel Manager</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
+<!--            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/">Home</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<div class="container">-->
+<!--    <h1 class="text-center my-3">Edit Users</h1>-->
+<!--    <div class="container h-50 d-flex justify-content-center align-items-center">-->
+<!--        <div class="jumbotron text-center">-->
+<!--    <a class="btn btn-primary btn-lg" href="/mvc/user/createUser" role="button">Create User</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    <table class="table table-striped">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Username</th>-->
+<!--            <th>Role</th>-->
+<!--            <th>Actions</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="user : ${users}">-->
+<!--            <td th:text="${user.userName}"></td>-->
+<!--            <td th:text="${user.roles[1].name}"></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/mvc/user/edit/{id}(id=${user.id})}" class="btn btn-primary mr-3">Edit</a>-->
+<!--                <form style="display:inline-block" th:action="@{/mvc/user/delete/{id}(id=${user.id})}" method="post" id="deleteForm">-->
+<!--                    <button class="btn btn-danger" type="button" onclick="showDeleteConfirmation()">Delete</button>-->
+<!--                </form>-->
+<!--            </td>-->
+
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>-->
+<!--<script>-->
+<!--    function showDeleteConfirmation() {-->
+<!--        // Show the SweetAlert-->
+<!--        Swal.fire({-->
+<!--            title: 'Are you sure?',-->
+<!--            text: 'This action cannot be undone.',-->
+<!--            icon: 'warning',-->
+<!--            showCancelButton: true,-->
+<!--            confirmButtonColor: '#d33',-->
+<!--            cancelButtonColor: '#3085d6',-->
+<!--            confirmButtonText: 'Delete',-->
+<!--            cancelButtonText: 'Cancel'-->
+<!--        }).then((result) => {-->
+<!--            if (result.value) {-->
+<!--                // If the user confirms, submit the form-->
+<!--                document.getElementById("deleteForm").submit();-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
