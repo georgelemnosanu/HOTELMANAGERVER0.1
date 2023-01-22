@@ -55,7 +55,7 @@
                             <form style="padding-top: 6px" th:action="@{/mvc/floor/editUser}" method="post">
                                 <input type="hidden" th:name="roomNumberId" th:value="${roomNumber.id}"/>
                                 <select style="font-weight: bold" id="roomTypeId" th:name="roomTypeId" th:required="required" >
-                                    <option style="font-weight: bold" th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomNumber.roomType.id == roomType.id}"></option>
+                                    <option style="font-weight: bold" th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomNumber.roomType.id == roomType.id}" th:if="${roomType.id != 3}"></option>
                                 </select>
                                 <span class="badge" th:classappend="${roomNumber.roomType.id == 1} ? 'badge-danger' : (${roomNumber.roomType.id == 2} ? 'badge-success' : (${roomNumber.roomType.id == 3} ? 'badge-warning' : 'badge-light'))"></span>
                                 <button type="submit" class="btn btn-primary">Edit</button>

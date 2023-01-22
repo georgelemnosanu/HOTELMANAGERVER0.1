@@ -105,17 +105,32 @@ public class TaskListController {
     }
 
 
+//    @GetMapping("/userTaskLists")
+//    public String getMyTaskLists(Model model, Authentication authentication) {
+//        MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
+//        User user = myUserDetails.getUser();
+//        List<TaskList> taskLists = taskListService.getTaskListsByUserId(user.getId());
+//        model.addAttribute("roomTypes",roomTypeService.getAllRoomTypes());
+//        model.addAttribute("cameraTypes",cameraTypeService.getAllCameraTypes());
+//        model.addAttribute("taskLists", taskLists);
+//
+//        return "floor/userTaskLists";
+//    }
+
     @GetMapping("/userTaskLists")
     public String getMyTaskLists(Model model, Authentication authentication) {
         MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
         User user = myUserDetails.getUser();
         List<TaskList> taskLists = taskListService.getTaskListsByUserId(user.getId());
-        model.addAttribute("roomTypes",roomTypeService.getAllRoomTypes());
-        model.addAttribute("cameraTypes",cameraTypeService.getAllCameraTypes());
+        List<RoomType> roomTypes = roomTypeService.getAllRoomTypes().stream()
+                .filter(rt -> rt.getId() != 3)
+                .collect(Collectors.toList());
+        model.addAttribute("roomTypes", roomTypes);
+        model.addAttribute("cameraTypes", cameraTypeService.getAllCameraTypes());
         model.addAttribute("taskLists", taskLists);
-
         return "floor/userTaskLists";
     }
+
 
     @PostMapping("/editUser")
     public String updateByUserId(@RequestParam("roomNumberId") Long roomNumberId,@RequestParam("roomTypeId") Long roomTypeId) {
