@@ -39,7 +39,7 @@
         <tbody>
         <tr th:each="user : ${users}">
             <td th:text="${user.userName}"></td>
-            <td th:text="${user.roles[1].name}"></td>
+            <td th:text="${user.roles[0].name}"></td>
             <td>
                 <a th:href="@{/mvc/user/edit/{id}(id=${user.id})}" class="btn btn-primary mr-3">Edit</a>
                 <form style="display:inline-block" th:action="@{/mvc/user/delete/{id}(id=${user.id})}" method="post" id="deleteForm">
