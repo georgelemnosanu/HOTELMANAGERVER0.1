@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">My Hotel Manager</a>
+  <a class="navbar-brand" href="#">My Hotel Manager NH Essen</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -59,76 +60,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-<!--<div class="form-group">-->
-<!--  <label for="roomNumber">Select Room Numbers</label>-->
-<!--  <div class="row">-->
-<!--    <div th:each="roomNumberGroup : ${roomNumberGroups}">-->
-<!--      <h2 th:text="'Floor ' + ${roomNumberGroup.key}"></h2>-->
-<!--      <div th:each="roomNumber : ${roomNumberGroup.value}">-->
-<!--        <div class="form-check" style="display: inline-block; padding: 10px; border: 1px solid #ccc;">-->
-<!--          <input class="form-check border rounded" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">-->
-<!--          <label class="form-check-label" th:text="${roomNumber.number}"></label>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="container">-->
-<!--  <h1 class="text-center">Create Task List</h1>-->
-<!--  <form action="/mvc/floor/submit" method="post">-->
-<!--    <div class="form-group">-->
-<!--      <label for="date">Date</label>-->
-<!--      <input type="date" class="form-control" id="date" name="date" th:value="${chosenDate}" required>-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--      <label for="user">Select User</label>-->
-<!--      <select class="form-control" id="user" name="userId">-->
-<!--        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.userName}"></option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--      <label for="roomNumber">Select Room Numbers</label>-->
-<!--      <div class="row">-->
-<!--        <div th:each="roomNumber : ${roomNumbers}" class="col-sm-4">-->
-<!--          <div class="form-check">-->
-<!--            <input class="form-check-input" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">-->
-<!--            <label class="form-check-label" th:for="roomNumber" th:text="${roomNumber.number}"></label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Create Task List</button>-->
-<!--  </form>-->
-<!--</div>-->
-
-
-
-
-
 
 
 

@@ -23,18 +23,13 @@
     </thead>
 
     <tbody>
-<!--    <tr th:each="editFloor:${editFloor}">-->
-<!--      <td><span th:text="${editFloor}">ID</span></td>-->
-
       <td>  <div class="mb-3 w-3 p-10">
         <label class="form-label" for="roomNumber"></label>
         <input th:field="*{roomNumber}" required type="text" name="roomNumber"
                id="roomNumber" class="form-control input-sm"
                placeholder="RoomNumber"
                minlength="1">
-        <!--        <input class="form-control" type="number" id="roomNumber" th:field="*{roomNumber}"/>-->
       </div>
-        <!--      <td><a th:href="@{'/mvc/floor/update' + ${update.id}}">edit</a></td>-->
       </td>
       <td>
         <div class="col-md-13">

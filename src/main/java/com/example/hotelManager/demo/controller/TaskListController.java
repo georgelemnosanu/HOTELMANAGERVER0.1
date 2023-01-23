@@ -55,7 +55,7 @@ public class TaskListController {
         Map<Integer, List<RoomNumber>> roomNumberGroups = new HashMap<>();
 
         roomNumberGroups.put(1, roomNumbers.stream()
-                .filter(roomNumber -> roomNumber.getNumber() >= 1 && roomNumber.getNumber() <= 15)
+                .filter(roomNumber -> roomNumber.getNumber() >= 0 && roomNumber.getNumber() <= 15)
                 .collect(Collectors.toList()));
         roomNumberGroups.put(2, roomNumbers.stream()
                 .filter(roomNumber -> roomNumber.getNumber() >= 101 && roomNumber.getNumber() <= 128)

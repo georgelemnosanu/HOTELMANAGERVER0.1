@@ -7,3 +7,10 @@ body {
     margin: 0 auto;
     max-width: 320px;
 }
+
+.bg {
+    background-image: url('https://img.nh-hotels.net/2EpWe/JoZPJ/original/F_NH_essen_037_2000x805-0_180.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}

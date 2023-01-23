@@ -41,8 +41,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">My Hotel Manager</a>
+<nav class="navbar navbar-expand-lg navbar-expand-sm navbar-light bg-light">
+  <a class="navbar-brand" href="#">My Hotel Manager NH Essen</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -50,10 +50,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/mvc/floor/createFloor">Create Task List</a>
+        <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/logout">Log Out</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mvc/floor/createFloor">Create Task List</a>
       </li>
     </ul>
   </div>
@@ -67,7 +70,8 @@
     </div>
     <button type="submit" class="btn btn-primary">View Tasklists by Date</button>
   </form>
-  <table class="table table-bordered">
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm">
     <thead>
     <tr>
       <th style="text-align: center">Id</th>
@@ -117,6 +121,7 @@
     </tr>
     </tbody>
   </table>
+    </div>
 </div>
 <script>
   document.querySelector("#deleteBtn").addEventListener("click", function(e) {

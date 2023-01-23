@@ -1,3 +1,85 @@
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.2rem;
+}
+
+/* Adjust the color of all links */
+a {
+    color: #007bff;
+}
+
+/* Adjust the background color of the table rows */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Adjust the padding and margin of the table cells */
+table td, th {
+    padding: 0.75rem;
+    margin: 0;
+}
+
+/* Add a hover effect to the table rows */
+table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Add a border to the table */
+table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+/* Add a media query to adjust the font size on smaller screens */
+@media (max-width: 500px) {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 1rem;
+    }
+}
+/* Decrease the padding and font size of the buttons */
+button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.2rem;
+}
+
+@media (max-width: 500px) {
+    .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.2rem;
+    }
+}
+
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    /* Increase the button padding and font size for smaller screens */
+    button {
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+}
+
+
+
+/* Set the background image to cover the entire screen on larger screens */
+@media (min-width: 600px) {
+    .bg {
+        background-size: cover;
+    }
+}
+
+/* Set the background image to fit within the screen on smaller screens */
+@media (max-width: 600px) {
+    .bg {
+        background-size: contain;
+    }
+}
+
+
+
+
+
+
 .room-type-1 {
     background-color: red;
     color:white;
@@ -18,109 +100,3 @@
     background-color:#A8FF94;
     color:black;
 }
-
-
-
-
-/* Default styles */
-
-
-/* Default styles */
-body {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Media query for screens smaller than 768px */
-@media (max-width: 768px) {
-    /* Change the font size and line height for smaller screens */
-    body {
-        font-size: 14px;
-        line-height: 1.4;
-    }
-
-    /* Make the navigation menu into a "hamburger" button */
-    .navbar-collapse {
-        display: none;
-    }
-    .navbar-toggler {
-        display: block;
-    }
-}
-
-/* Default button styles */
-button {
-    padding: 8px 12px;
-    font-size: 14px;
-}
-
-/* Media query for screens smaller than 768px */
-@media (max-width: 768px) {
-    /* Increase the button padding and font size for smaller screens */
-    button {
-        padding: 12px 16px;
-        font-size: 16px;
-    }
-}
-
-/* Make the navigation bar and buttons smaller on small screens */
-@media (max-width: 600px) {
-    .navbar {
-        font-size: 14px;
-    }
-    .btn {
-        padding: .2rem .5rem;
-        font-size: .8rem;
-    }
-}
-
-/* Make the table columns stack vertically on small screens */
-@media (max-width: 600px) {
-    thead th {
-        display: none;
-    }
-    tr {
-        border: solid #ddd;
-        border-width: 1px 0;
-        display: block;
-        margin-bottom: .625rem;
-    }
-    td {
-        display: block;
-        font-size: .8rem;
-        text-align: right;
-        border-bottom: 1px solid #ddd;
-        padding: .5rem;
-    }
-    td::before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-}
-
-/* Make the form elements larger and easier to tap on small screens */
-@media (max-width: 600px) {
-    input[type="text"], input[type="password"], input[type="date"], select {
-        padding: .5rem;
-        font-size: 1rem;
-    }
-}
-
-/* Make the room status and camera type cells display side-by-side on larger screens */
-@media (min-width: 600px) {
-    .room-status, .camera-type {
-        display: inline-block;
-        width: 50%;
-    }
-}
-
-/* Make the room status and camera type cells display one under the other on smaller screens */
-@media (max-width: 600px) {
-    .room-status, .camera-type {
-        display: block;
-        width: 100%;
-    }
-}
-
