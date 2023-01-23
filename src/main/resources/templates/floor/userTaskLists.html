@@ -47,15 +47,16 @@
                     <th style="text-align: center">Room Status:</th>
                     <th style="text-align: center">Camera Type:</th>
                 </tr>
-                    <tr th:each="roomNumber : ${taskList.roomNumbers}"> <tr th:each="roomNumber : ${taskList.roomNumbers}">
-                        <td th:class="${roomNumber.roomType.id == 1} ? 'room-type-1' : (${roomNumber.roomType.id == 2} ? 'room-type-2' : (${roomNumber.roomType.id == 3} ? 'room-type-3' : 'room-type-4'))"
-                            style="text-align: center; padding-top: 13px; font-weight: bold"
-                            th:text="${roomNumber.number}"></td>
+                    <tr th:each="roomNumber : ${taskList.roomNumbers}">
+                        <td style="text-align: center; padding-top: 13px; font-weight: bold" th:class="${roomNumber.roomType.id == 1} ? 'room-type-1' : (${roomNumber.roomType.id == 2} ? 'room-type-2' : (${roomNumber.roomType.id == 3} ? 'room-type-3' : (${roomNumber.roomType.id == 4} ? 'room-type-4' : 'room-type-5' )))">
+                            <span th:text="${roomNumber.number}"></span><br>
+                            <span th:text="${roomNumber.roomType.name}"></span>
+                        </td>
                         <td>
                             <form style="padding-top: 6px" th:action="@{/mvc/floor/editUser}" method="post">
                                 <input type="hidden" th:name="roomNumberId" th:value="${roomNumber.id}"/>
-                                <select style="font-weight: bold" id="roomTypeId" th:name="roomTypeId" th:required="required" >
-                                    <option style="font-weight: bold" th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomNumber.roomType.id == roomType.id}" th:if="${roomType.id != 3}"></option>
+                                <select style="font-weight: bold" id="roomTypeId" th:name="roomTypeId" th:required="required">
+                                    <option style="font-weight: bold" th:each="roomType : ${roomTypes}" th:value="${roomType.id}" th:text="${roomType.name}" th:selected="${roomNumber.roomType.id == roomType.id}" th:if="${roomNumber.cameraType.id == 2 ? roomType.id != 3 : roomType.id != 3 && roomType.id != 4 && roomType.id != 5}"></option>
                                 </select>
                                 <span class="badge" th:classappend="${roomNumber.roomType.id == 1} ? 'badge-danger' : (${roomNumber.roomType.id == 2} ? 'badge-success' : (${roomNumber.roomType.id == 3} ? 'badge-warning' : 'badge-light'))"></span>
                                 <button type="submit" class="btn btn-primary">Edit</button>

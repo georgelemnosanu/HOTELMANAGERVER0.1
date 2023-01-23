@@ -122,14 +122,22 @@ public class TaskListController {
         MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
         User user = myUserDetails.getUser();
         List<TaskList> taskLists = taskListService.getTaskListsByUserId(user.getId());
-        List<RoomType> roomTypes = roomTypeService.getAllRoomTypes().stream()
-                .filter(rt -> rt.getId() != 3)
-                .collect(Collectors.toList());
-        model.addAttribute("roomTypes", roomTypes);
-        model.addAttribute("cameraTypes", cameraTypeService.getAllCameraTypes());
+        for(TaskList taskList :taskLists){
+            for(RoomNumber roomNumber :taskList.getRoomNumbers()){
+                List<RoomType> roomTypes = null;
+                if(roomNumber.getCameraType().getId() != null){
+                    roomTypes=roomTypeService.getAllRoomTypes().stream().filter(roomType -> roomType.getId() !=3).collect(Collectors.toList());
+                    model.addAttribute("roomTypes",roomTypes);
+                }else if(roomNumber.getCameraType().getId() != 2) roomTypes=roomTypeService.getAllRoomTypes().stream().filter(roomType -> roomType.getId() !=3 && roomType.getId() !=4 && roomType.getId() !=5).collect(Collectors.toList());
+                model.addAttribute("roomTypes",roomTypes);
+            }
+        }
+        model.addAttribute("cameraTypes",cameraTypeService.getAllCameraTypes());
         model.addAttribute("taskLists", taskLists);
+
         return "floor/userTaskLists";
     }
+
 
 
     @PostMapping("/editUser")
