@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Create Task List</title>
+  <link rel="stylesheet" th:href="@{/createFloor.css}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
@@ -36,25 +37,59 @@
         <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.userName}"></option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group text-center mx-auto">
       <label for="roomNumber">Select Room Numbers</label>
       <div class="row">
-        <div th:each="roomNumber : ${roomNumbers}" class="col-sm-4">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">
-            <label class="form-check-label" th:for="roomNumber" th:text="${roomNumber.number}"></label>
+        <div th:each="roomNumberGroup : ${roomNumberGroups}" class="col-md-6">
+          <h2 th:text="'Floor ' + ${roomNumberGroup.key}" class="text-center"></h2>
+          <div>
+            <div th:each="roomNumber : ${roomNumberGroup.value}" class="form-check d-inline-block small text-left float-left checkbox-container">
+              <input class="form-check-input" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">
+              <label class="form-check-label font-weight-bold" th:text="${roomNumber.number}"></label>
+            </div>
           </div>
         </div>
       </div>
+      <button type="submit" class="btn btn-primary">Create Task List</button>
     </div>
-    <button type="submit" class="btn btn-primary">Create Task List</button>
   </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+<!--<div class="form-group">-->
+<!--  <label for="roomNumber">Select Room Numbers</label>-->
+<!--  <div class="row">-->
+<!--    <div th:each="roomNumberGroup : ${roomNumberGroups}">-->
+<!--      <h2 th:text="'Floor ' + ${roomNumberGroup.key}"></h2>-->
+<!--      <div th:each="roomNumber : ${roomNumberGroup.value}">-->
+<!--        <div class="form-check" style="display: inline-block; padding: 10px; border: 1px solid #ccc;">-->
+<!--          <input class="form-check border rounded" type="checkbox" value="" name="roomNumbers" id="roomNumber" th:value="${roomNumber.id}">-->
+<!--          <label class="form-check-label" th:text="${roomNumber.number}"></label>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+
 
 
 
