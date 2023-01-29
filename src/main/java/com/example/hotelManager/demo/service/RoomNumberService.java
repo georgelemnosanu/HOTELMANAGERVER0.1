@@ -25,9 +25,6 @@ public class RoomNumberService {
         return roomNumberRepository.findById(id).orElse(null);
     }
 
-//    public List<RoomNumber> getAllRoomNumbers() {
-//        return roomNumberRepository.findAll();
-//    }
 
     public void deleteRoomNumberById(Long id) {
         roomNumberRepository.deleteById(id);
