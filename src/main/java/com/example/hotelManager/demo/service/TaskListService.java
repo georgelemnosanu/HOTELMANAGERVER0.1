@@ -85,16 +85,7 @@ public class TaskListService {
     }
 
 
-//    public List<TaskList> getAllTaskListsWithCameraTypes() {
-//        List<TaskList> taskLists = taskListRepository.findAll();
-//        for (TaskList taskList : taskLists) {
-//            for (RoomNumber roomNumber : taskList.getRoomNumbers()) {
-//                CameraType cameraType = cameraTypeRepository.findById(roomNumber.getCameraType().getId()).get();
-//                roomNumber.setCameraType(cameraType);
-//            }
-//        }
-//        return taskLists;
-//    }
+
 
 
 }
