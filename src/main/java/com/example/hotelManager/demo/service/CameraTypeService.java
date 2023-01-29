@@ -31,7 +31,6 @@ public class CameraTypeService {
 
 
     public CameraType getDefaultCameraType() {
-        //retrieve default camera type from repository or hardcoded
         Optional<CameraType> defaultCameraType = cameraTypeRepository.findById(1L);
         if(defaultCameraType.isPresent()){
             return defaultCameraType.get();
