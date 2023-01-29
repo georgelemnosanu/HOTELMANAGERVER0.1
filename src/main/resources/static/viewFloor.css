@@ -58,7 +58,7 @@ button {
 
 
 
-/* Set the background image to cover the entire screen on larger screens */
+
 @media (min-width: 600px) {
     .bg {
         background-size: cover;
