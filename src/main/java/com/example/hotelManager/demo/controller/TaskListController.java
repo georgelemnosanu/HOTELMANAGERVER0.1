@@ -40,14 +40,6 @@ public class TaskListController {
     UserService userService;
 
 
-//    @GetMapping("/createFloor")
-//    public String createTaskList(Model model) {
-//        model.addAttribute("taskList", new TaskList());
-//        model.addAttribute("roomNumbers", roomNumberService.getAllRoomNumbers());
-//        model.addAttribute("chosenDate", LocalDate.now());
-//        model.addAttribute("users", userService.getAllUsers());
-//        return "floor/createFloor";
-//    }
 
     @GetMapping("/createFloor")
     public String createTaskList(Model model) {
@@ -105,17 +97,6 @@ public class TaskListController {
     }
 
 
-//    @GetMapping("/userTaskLists")
-//    public String getMyTaskLists(Model model, Authentication authentication) {
-//        MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
-//        User user = myUserDetails.getUser();
-//        List<TaskList> taskLists = taskListService.getTaskListsByUserId(user.getId());
-//        model.addAttribute("roomTypes",roomTypeService.getAllRoomTypes());
-//        model.addAttribute("cameraTypes",cameraTypeService.getAllCameraTypes());
-//        model.addAttribute("taskLists", taskLists);
-//
-//        return "floor/userTaskLists";
-//    }
 
     @GetMapping("/userTaskLists")
     public String getMyTaskLists(Model model, Authentication authentication) {
@@ -149,10 +130,7 @@ public class TaskListController {
         return "redirect:/mvc/floor/userTaskLists";
     }
 
-//    @PostMapping("/deleteTask")
-//    public String deleteTask(@RequestParam TaskList taskList){
-//
-//    }
+
 
 
     @PostMapping("/tasklistsByDate")
