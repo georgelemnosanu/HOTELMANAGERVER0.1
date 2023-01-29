@@ -61,11 +61,6 @@ public class UserController {
     }
 
 
-//    @GetMapping("/delete/{id}")
-//    public String getDeleteUser(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "/user/delete";
-//    }
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
